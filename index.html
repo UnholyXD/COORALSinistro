@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinistro</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Relatório de Sinistro</h1>
+
+        <form id="meuFormulario">
+            <div class="form-group">
+                <label for="campo1">Data e Hora que o motorista informou:</label>
+                <input placeholder="Quando foi que o motorista avisou?" type="text" id="campo1" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo2">Data e Hora em que ocorreu:</label>
+                <input placeholder="Que horas foi que aconteceu?" type="text" id="campo2" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo3">Evento:</label>
+                <input placeholder="Foi falha mecânica?" type="text" id="campo3" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo4">Local do Ocorrido:</label>
+                <input placeholder="Pega o endereço, se possível pede localização." type="text" id="campo4" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo5">Origem da Viagem:</label>
+                <input placeholder="Lembra de anotar o final do CNPJ" type="text" id="campo5" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo6">Destino da viagem:</label>
+                <input placeholder="Lembra de anotar o final do CNPJ" type="text" id="campo6" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo7">Placa do Cavalo:</label>
+                <input type="text" id="campo7" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo8">Placa da Carreta:</label>
+                <input type="text" id="campo8" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo9">CPF do Condutor:</label>
+                <input type="text" id="campo9" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo10">Nome do Condutor:</label>
+                <input type="text" id="campo10" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo11">Tranportadora:</label>
+                <input value="COORAL" type="text" id="campo11" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo12">Tecnologia do Rastreador:</label>
+                <input value="Sascar" type="text" id="campo12" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo13">Mercadoria:</label>
+                <input type="text" id="campo13" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo14">Nota Fiscal:</label>
+                <input type="text" id="campo14" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo15">Valor:</label>
+                <input value="R$ " type="text" id="campo15" name="texto[]">
+            </div>
+
+            <div class="form-group">
+                <label for="campo16">Explicação:</label>
+                <textarea id="campo16" name="texto[]" placeholder="Coloca os detalhes do que é o problema" rows="4"></textarea>
+            </div>
+
+            <button type="submit">Gerar</button>
+        </form>
+    </div>
+
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Protocolo do Sinistro</h2>
+            <div id="modalContent"></div>
+            <button id="copyButton" class="copy-button">Copiar</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

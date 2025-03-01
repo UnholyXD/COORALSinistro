@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Sinistro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="instruction-box" onclick="toggleInstructions('mechanical')">
+            <h3>�� Falha Mecânica</h3>
+            <div class="instruction-content" id="mechanical-content">
+                <p>1. Confirmar localização exata</p>
+                <p>2. Verificar se há carga</p>
+                <p>3. Solicitar fotos do problema</p>
+                <p>4. Acionar seguro se necessário</p>
+                <p>5. Registrar horário de parada</p>
+            </div>
+        </div>
+
+        <div class="instruction-box" onclick="toggleInstructions('accident')">
+            <h3>🚨 Acidente</h3>
+            <div class="instruction-content" id="accident-content">
+                <p>1. Verificar se há vítimas</p>
+                <p>2. Acionar autoridades se necessário</p>
+                <p>3. Solicitar B.O.</p>
+                <p>4. Registrar dados dos envolvidos</p>
+                <p>5. Acionar seguro imediatamente</p>
+            </div>
+        </div>
+
+        <div class="instruction-box" onclick="toggleInstructions('theft')">
+            <h3>🚔 Roubo/Furto</h3>
+            <div class="instruction-content" id="theft-content">
+                <p>1. Acionar polícia imediatamente</p>
+                <p>2. Solicitar B.O.</p>
+                <p>3. Bloquear rastreador</p>
+                <p>4. Comunicar seguradora</p>
+                <p>5. Registrar última localização</p>
+            </div>
+        </div>
+    </div>
+    <button class="theme-toggle" onclick="toggleBasicTheme()">🌙 Modo Escuro</button>
+    <div class="form-container">
+        <h1>Relatório de BUG</h1>
+        <form id="sinistroForm">
+            <div class="form-group">
+                <label class="form-label">Data e Hora que o motorista informou:</label>
+                <input type="datetime-local" class="form-control" id="dataInformada" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Data e Hora em que ocorreu:</label>
+                <input type="datetime-local" class="form-control" id="dataOcorrido" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Evento:</label>
+                <input type="text" class="form-control" id="evento" placeholder="Foi falha mecânica?" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Local do Ocorrido:</label>
+                <input type="text" class="form-control" id="local" placeholder="Pega o endereço, se possível pede localização" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Origem da Viagem:</label>
+                <input type="text" class="form-control" id="origem" placeholder="Lembra de anotar o final do CNPJ" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Destino da viagem:</label>
+                <input type="text" class="form-control" id="destino" placeholder="Lembra de anotar o final do CNPJ" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Placa do Cavalo:</label>
+                <input type="text" class="form-control" id="placaCavalo" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Placa da Carreta:</label>
+                <input type="text" class="form-control" id="placaCarreta" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">CPF do Condutor:</label>
+                <input type="tel" 
+                       class="form-control" 
+                       id="cpfCondutor" 
+                       pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
+                       inputmode="numeric"
+                       maxlength="14"
+                       placeholder="000.000.000-00">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Nome do Condutor:</label>
+                <input type="text" class="form-control" id="nomeCondutor" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Transportadora:</label>
+                <input type="text" class="form-control" id="transportadora" value="COORAL" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Tecnologia do Rastreador:</label>
+                <input type="text" class="form-control" id="tecnologia" value="Sascar" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Mercadoria:</label>
+                <input type="text" class="form-control" id="mercadoria" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Nota Fiscal:</label>
+                <input type="text" class="form-control" id="notaFiscal" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Valor:</label>
+                <input type="text" class="form-control" id="valor" placeholder="R$" >
+            </div>
+            <div class="form-group">
+                <label class="form-label">Explicação:</label>
+                <textarea class="form-control" id="explicacao" rows="3" placeholder="Coloca os detalhes do que é o problema" required></textarea>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-warning" onclick="clearForm()">Limpar</button>
+                <button type="submit" class="btn btn-danger">Gerar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="relatorioModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Relatório de Sinistro</h5>
+                    <button type="button" class="modal-close" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="copyReport()">📋 Copiar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

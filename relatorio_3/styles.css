@@ -1,0 +1,444 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #333;
+    --text-color: #fff;
+    --input-bg: #fff;
+    --input-text: #333;
+    --modal-bg: #fff;
+    --modal-text: #333;
+    --border-color: #ccc;
+    
+    /* Rainbow theme colors */
+    --rainbow-1: #ff0000;
+    --rainbow-2: #ff8800;
+    --rainbow-3: #ffff00;
+    --rainbow-4: #00ff00;
+    --rainbow-5: #0000ff;
+    --rainbow-6: #8800ff;
+    
+    /* Glow colors */
+    --glow-color: rgba(255, 255, 255, 0.75);
+}
+
+body.light-mode {
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+    --input-bg: #fff;
+    --input-text: #333;
+    --modal-bg: #fff;
+    --modal-text: #333;
+    --border-color: #ddd;
+}
+
+body.rainbow-mode {
+    --bg-color: #111;
+    --text-color: #fff;
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --input-text: #fff;
+    --modal-bg: rgba(0, 0, 0, 0.9);
+    --modal-text: #fff;
+    --border-color: rgba(255, 255, 255, 0.2);
+    animation: rainbow-bg 10s linear infinite;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    cursor: pointer;
+    user-select: none; /* Prevents text selection when double-clicking */
+}
+
+.form-group {
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 16px;
+    align-items: center;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0;
+    color: var(--text-color);
+    text-align: right;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+    grid-column: 2;
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 12px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.text-center {
+    grid-column: 1 / -1;
+    text-align: right;
+    margin-top: 24px;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-dialog {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    color: var(--modal-text);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 20px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.modal-body {
+    padding: 16px;
+}
+
+.modal-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    text-align: right;
+}
+
+.modal-body p {
+    margin-bottom: 8px;
+}
+
+/* Rainbow animations */
+@keyframes rainbow-bg {
+    0% { background-color: var(--rainbow-1); }
+    17% { background-color: var(--rainbow-2); }
+    34% { background-color: var(--rainbow-3); }
+    51% { background-color: var(--rainbow-4); }
+    68% { background-color: var(--rainbow-5); }
+    85% { background-color: var(--rainbow-6); }
+    100% { background-color: var(--rainbow-1); }
+}
+
+/* Rainbow mode specific styles */
+.rainbow-mode .form-control {
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 15px var(--glow-color);
+    transition: all 0.3s ease;
+}
+
+.rainbow-mode .form-control:focus {
+    border-color: var(--rainbow-1);
+    box-shadow: 0 0 20px var(--rainbow-1);
+    animation: input-glow 5s linear infinite;
+}
+
+.rainbow-mode .btn {
+    background: linear-gradient(90deg, 
+        var(--rainbow-1),
+        var(--rainbow-2),
+        var(--rainbow-3),
+        var(--rainbow-4),
+        var(--rainbow-5),
+        var(--rainbow-6)
+    );
+    background-size: 400% 100%;
+    animation: moving-gradient 10s linear infinite;
+    border: none;
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes input-glow {
+    0% { box-shadow: 0 0 20px var(--rainbow-1); }
+    17% { box-shadow: 0 0 20px var(--rainbow-2); }
+    34% { box-shadow: 0 0 20px var(--rainbow-3); }
+    51% { box-shadow: 0 0 20px var(--rainbow-4); }
+    68% { box-shadow: 0 0 20px var(--rainbow-5); }
+    85% { box-shadow: 0 0 20px var(--rainbow-6); }
+    100% { box-shadow: 0 0 20px var(--rainbow-1); }
+}
+
+@keyframes moving-gradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+/* Rainbow text animation for the title */
+.rainbow-mode h1 {
+    background: linear-gradient(
+        90deg,
+        var(--rainbow-1),
+        var(--rainbow-2),
+        var(--rainbow-3),
+        var(--rainbow-4),
+        var(--rainbow-5),
+        var(--rainbow-6),
+        var(--rainbow-1)
+    );
+    background-size: 400% 100%;
+    animation: moving-gradient 10s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Make sure the title cursor is pointer to hint it's clickable */
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    cursor: pointer;
+    user-select: none; /* Prevents text selection when double-clicking */
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    
+    .form-group {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .form-label {
+        text-align: left;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    textarea.form-control {
+        min-height: 150px;
+        grid-column: 1;
+        width: 100%;
+        font-size: 16px;
+        margin-top: 8px;
+    }
+
+    .form-group:has(textarea) {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* Add styles for the copy button */
+.btn-primary {
+    background-color: #0d6efd;
+    color: white;
+    margin-right: 8px;
+}
+
+.rainbow-mode .btn-primary {
+    /* Keep consistent with other buttons in rainbow mode */
+    background: linear-gradient(90deg, 
+        var(--rainbow-1),
+        var(--rainbow-2),
+        var(--rainbow-3),
+        var(--rainbow-4),
+        var(--rainbow-5),
+        var(--rainbow-6)
+    );
+    background-size: 400% 100%;
+    animation: moving-gradient 10s linear infinite;
+}
+
+/* Add styles for the warning (clear) button */
+.btn-warning {
+    background-color: #ffc107;
+    color: #000;
+    margin-right: 8px;
+}
+
+/* Update rainbow mode for warning button */
+.rainbow-mode .btn-warning {
+    background: linear-gradient(90deg, 
+        var(--rainbow-1),
+        var(--rainbow-2),
+        var(--rainbow-3),
+        var(--rainbow-4),
+        var(--rainbow-5),
+        var(--rainbow-6)
+    );
+    background-size: 400% 100%;
+    animation: moving-gradient 10s linear infinite;
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Add these styles */
+.sidebar {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 250px;
+}
+
+.instruction-box {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.instruction-box h3 {
+    padding: 12px;
+    margin: 0;
+    color: var(--text-color);
+    font-size: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.instruction-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 12px;
+}
+
+.instruction-content.show {
+    max-height: 300px;
+    padding: 12px;
+}
+
+.instruction-content p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* Rainbow mode styles for instructions */
+.rainbow-mode .instruction-box {
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.rainbow-mode .instruction-box:hover {
+    box-shadow: 0 0 20px var(--rainbow-1);
+    animation: input-glow 5s linear infinite;
+}
+
+/* Update the responsive adjustments */
+@media (max-width: 1200px) {
+    .sidebar {
+        display: none; /* Hide completely on mobile */
+    }
+
+    /* You can remove or comment out these since the sidebar will be hidden
+    .sidebar {
+        position: static;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 20px;
+        transform: none;
+    }
+
+    .instruction-box {
+        margin-bottom: 8px;
+    }
+    */
+} 

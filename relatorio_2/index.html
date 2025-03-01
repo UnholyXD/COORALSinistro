@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Sinistro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Botão de alternar tema claro/escuro -->
+    <div class="theme-toggle">
+        <button id="themeToggle">🌙</button>
+    </div>
+    <button id="toggleSidebar" class="toggle-sidebar-btn">��</button>
+
+    <!-- Container principal do formulário -->
+    <div class="container">
+        <h1>Relatório de Sinistro</h1>
+        <form id="sinistroForm">
+            <!-- Campos de data e hora -->
+            <div class="form-group">
+                <label for="dataInformada">Data e Hora que o motorista informou:</label>
+                <input type="datetime-local" id="dataInformada">
+            </div>
+
+            <div class="form-group">
+                <label for="dataOcorrencia">Data e Hora em que ocorreu:</label>
+                <input type="datetime-local" id="dataOcorrencia">
+            </div>
+
+            <div class="form-group">
+                <label for="evento">Evento:</label>
+                <input type="text" id="evento" placeholder="Qual tipo de evento ocorreu?">
+            </div>
+
+            <div class="form-group">
+                <label for="localOcorrido">Local do Ocorrido:</label>
+                <input type="text" id="localOcorrido" placeholder="Pega o endereço, se possível geolocalização.">
+            </div>
+
+            <div class="form-group">
+                <label for="origemViagem">Origem da Viagem:</label>
+                <input type="text" id="origemViagem" placeholder="Lembre de anotar o final do CNPJ">
+            </div>
+
+            <div class="form-group">
+                <label for="destinoViagem">Destino da viagem:</label>
+                <input type="text" id="destinoViagem" placeholder="Lembre de anotar o final do CNPJ">
+            </div>
+
+            <div class="form-group">
+                <label for="placaCavalo">Placa do Cavalo:</label>
+                <input type="text" id="placaCavalo">
+            </div>
+
+            <div class="form-group">
+                <label for="placaCarreta">Placa da Carreta:</label>
+                <input type="text" id="placaCarreta">
+            </div>
+
+            <div class="form-group">
+                <label for="cpfCondutor">CPF do Condutor:</label>
+                <input type="text" id="cpfCondutor" placeholder="000.000.000-00">
+            </div>
+
+            <div class="form-group">
+                <label for="nomeCondutor">Nome do Condutor:</label>
+                <input type="text" id="nomeCondutor">
+            </div>
+
+            <div class="form-group">
+                <label for="transportadora">Transportadora:</label>
+                <input type="text" id="transportadora" value="COORAL" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="tecnologia">Tecnologia do Rastreador:</label>
+                <input type="text" id="tecnologia" value="Sascar" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="mercadoria">Mercadoria:</label>
+                <input type="text" id="mercadoria">
+            </div>
+
+            <div class="form-group">
+                <label for="notaFiscal">Nota Fiscal:</label>
+                <input type="text" id="notaFiscal">
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" placeholder="R$">
+            </div>
+
+            <div class="form-group">
+                <label for="explicacao">Explicação:</label>
+                <textarea id="explicacao" placeholder="Coloque os detalhes do que é o problema"></textarea>
+            </div>
+
+            <!-- Botões de ação do formulário -->
+            <div class="button-group">
+                <button type="button" class="clean-btn" id="cleanForm">Limpar</button>
+                <button type="submit" class="submit-btn">Gerar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Barra lateral com protocolos anteriores -->
+    <div class="sidebar">
+        <div class="protocol-box">
+            <div class="protocol-header">
+                <h3>Protocolo #1234</h3>
+                <span class="expand-icon">+</span>
+            </div>
+            <div class="protocol-content">
+                <!-- Detalhes do protocolo -->
+                <p>Data: 12/03/2024</p>
+                <p>Local: São Paulo</p>
+                <p>Evento: Falha Mecânica</p>
+                <p>Motorista: João Silva</p>
+                <p>Status: Em andamento</p>
+            </div>
+        </div>
+        <div class="protocol-box">
+            <div class="protocol-header">
+                <h3>Protocolo #5678</h3>
+                <span class="expand-icon">+</span>
+            </div>
+            <div class="protocol-content">
+                <p>Data: 13/03/2024</p>
+                <p>Local: Rio de Janeiro</p>
+                <p>Evento: Pneu Furado</p>
+                <p>Motorista: Pedro Santos</p>
+                <p>Status: Concluído</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para exibição do relatório -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Relatório de Sinistro</h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
